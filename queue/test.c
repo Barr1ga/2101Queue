@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-#include "Exercise1.h"
+#include "Exercise1.c"
 #include "Person.c"
+#include "CircularArrayQ.c"
 
 int main(void) 
 {
@@ -9,12 +10,10 @@ int main(void)
     bool ret;
     int i;
 
-
     PersonDynamicArrayList maleList;
-
     PersonLinkedList femaleList;
-    
     CircularArrayQueue list;
+
     list=create_array_queue();
     init_array_queue(&list);
     
@@ -29,62 +28,42 @@ int main(void)
 
     p=createPerson("daina", 'm', "mandaw");
     ret=enqueue(&list, p);
-
-    printf("\nCircArr size [%d]", get_queue_length(list));
-
-    /*********************Problem 2
     
-    femaleList=get_all_females(list);
+// Problem 1
 
-    printf("\nfront [%d]\nrear [%d]\n", list.front, list.rear);
-    for(i=0; i<MAX; i++){
-        printf("\n%2d ",i);
-        displayPersonInfo(list.data[i]);
-    }
+//     printf("\nCircArr size [%d]", get_queue_length(list));
 
-    printf("\n\nFemale List\n");
-        display_LL(femaleList);
-        printf("\n");
 
-    **********************/
+// Problem 2
 
-    /*********************Problem 3
-     * **********************/
-    printf("\nfront [%d]\nrear [%d]\n", list.front, list.rear);
-    for(i=0; i<MAX; i++){
-        printf("\n%2d ",i);
-        displayPersonInfo(list.data[i]);
-    }
+    // femaleList=get_all_females(list);
 
-    maleList=remove_all_males(&list);
+    // printf("\nfront [%d]\nrear [%d]\n", list.front, list.rear);
+    // for(i=0; i<MAX; i++){
+    //     printf("\n%2d ",i);
+    //     displayPersonInfo(list.data[i]);
+    // }
 
-    printf("\nfront [%d]\nrear [%d]\n", list.front, list.rear);
-    for(i=0; i<MAX; i++){
-        printf("\n%2d ",i);
-        displayPersonInfo(list.data[i]);
-    }
+    // printf("\n\nFemale List\n");
+    //     display_LL(femaleList);
+    //     printf("\n");
 
-    display_DAL(maleList);
-    
+
 
     
-    
+// Problem 3
+     
+    // maleList=remove_all_males(&list);
 
-    // LL testing
-    // PersonLinkedList tempList;
-    // p=createPerson("horeb", 'm', "cebu");
-    // insert_first_LL(&tempList, p);
+    // printf("\nfront [%d]\nrear [%d]\n", list.front, list.rear);
+    // for(i=0; i<MAX; i++){
+    //     printf("\n%2d ",i);
+    //     displayPersonInfo(list.data[i]);
+    // }
 
-    // p=createPerson("gab", 'f', "danao");
-    // insert_first_LL(&tempList, p);
+    // display_DAL(maleList);
 
-    // p=createPerson("dyedo", 'f', "mandaw");
-    // insert_first_LL(&tempList, p);
-
-    // p=createPerson("stan", 'm', "cebu");
-    // insert_first_LL(&tempList, p);
-    
-    // display_LL(tempList);
+  
 
 
     return 0;

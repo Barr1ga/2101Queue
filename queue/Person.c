@@ -19,8 +19,6 @@ void displayPersonInfo(Person p) {
 
 
 
-
-
 /* Static Array List*/
 
 
