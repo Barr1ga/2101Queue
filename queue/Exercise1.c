@@ -32,9 +32,8 @@ PersonDynamicArrayList remove_all_males(CircularArrayQueue *list){
     PersonDynamicArrayList newMaleList;
     init_DAL(&newMaleList);
     int temp=list->rear;
-    while((list->front+1)%MAX!=temp){
+    while((list->front-1)%MAX!=temp){
         frontSaved=list->data[list->front];//save front
-        printf("\n%d %d\n",list->front, list->rear);
         if(frontSaved.sex=='m'){
             newMaleList.data[i]=frontSaved;
             i++;

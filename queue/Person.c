@@ -311,7 +311,7 @@ void display_DAL_2(PersonDynamicArrayList list){
 /* Singly Linked List */
 
 void insert_first_LL(PersonLinkedList *list, Person p){
-    PersonLinkedList temp, *trav;
+    PersonLinkedList temp;
     temp=malloc(sizeof(PersonNode));
     if(temp!=NULL){
         temp->elem=p;
@@ -335,6 +335,7 @@ void insert_last_LL(PersonLinkedList *list, Person p){
 void insert_after_LL(PersonLinkedList *list, Person p, String name){
     PersonLinkedList temp, *trav;
     temp=malloc(sizeof(PersonNode));
+    temp->elem=p;
     if(temp!=NULL){
         for(trav=list; *trav!=NULL && strcmp((*trav)->elem.name, name)<0; trav=&(*trav)->next){
         }
@@ -397,6 +398,7 @@ Position alloc_space(VSpace *vs){
     Position ret;
     if(vs->avail!=-1){
         ret=vs->avail;
+        vs->avail=vs->data[ret].next;
     }
     return ret;
 }
@@ -417,13 +419,14 @@ void insert_first_CBL(VSpace *vs, PersonCusorBasedList *list, Person p){
 }
 
 void insert_last_CBL(VSpace *vs, PersonCusorBasedList *list, Person p){
-    Position i, temp;
+    Position *i, temp;
     temp=alloc_space(vs);
     if(temp!=-1){
-        for(i=*list; i!=-1; i=vs->data[i].next){
+        for(i=list; *i!=-1; i=&(vs->data[*i].next)){
         }
-        vs->data[i].next=vs->avail;
         vs->data[temp].elem=p;
+        vs->data[temp].next=*i;
+        *i=temp;
     }
 }
 
@@ -461,7 +464,7 @@ void delete_by_sex_CBL(VSpace *vs, PersonCusorBasedList *list, char sex){
     Position *i, temp;
     if(*list!=-1){ 
         i=list;
-        while(vs->data[*i].next!=-1){
+        while(*i!=-1){
             if(vs->data[*i].elem.sex=='f'){
                 temp=*i;
                 *i=vs->data[*i].next;
